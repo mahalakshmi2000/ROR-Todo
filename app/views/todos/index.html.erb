@@ -55,7 +55,7 @@ li:hover{
         <% end %>
         </div>
         <div id="row3">
-            <%= @showlist.each do |records| %>
+            <% @showlist.each do |records| %>
             <h1 id = "tasklist"><%= records.Task %> <%= records.Date %>
             <%= link_to "Delete", "/todos/#{records.id}", :date => {:confirm => "Are you sure?"}%>
             </h1>
