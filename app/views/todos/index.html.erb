@@ -1,0 +1,66 @@
+ <style>
+    * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: cursive;
+  }
+   
+  body {
+    background: black;
+    overflow: auto;
+    color:white;
+  }
+/* #row1{margin-left:100px;} */
+#row2{margin-left: 384px; border-radius:30px; width: 38%;padding-top: 5%;padding-bottom: 5%; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; background:white;} 
+
+h1{
+     text-align: center;
+     margin: 5%;
+     font-size: 3rem;
+     /* text-decoration: underline; */
+  }
+   
+ul {
+    text-align: left;
+    padding-left: 10%;
+    padding: 7%;
+    font-size: 2rem;
+    list-style: circle;
+}
+   
+li:hover{
+    color:red;
+    margin: 4%;
+    transition: 1.5s ease;
+    cursor: pointer;
+}
+#myInput{margin-left:17%;width: 325px;height: 45px;}
+#myDueDate{ margin-left: 59%;margin-top: 3%;}
+.addBtn{margin-left:45%; margin-top:3%}
+ </style>
+
+    <div class="container">
+        <h1 id="row1">
+          &nbsp;&nbsp;&nbsp;
+          TODO APP
+          &nbsp;&nbsp;&nbsp;
+        </h1>
+        <br/><br/>
+        <div id="row2">
+            <%= form_with(model: @todo,  url: "/todos", method: "POST") do |form| %>
+            <%= form.text_field :Task, id:"myInput",placeholder: "Add a Task...", class: "form-control", :required => true %><br>
+            <%= form.date_field :Date, id:"myDueDate"  %><br>
+            <%= form.submit "Add Task", class:"addBtn" %>
+        <% end %>
+        </div>
+        <div id="row3">
+            <%= @showlist.each do |records| %>
+            <h1 id = "tasklist"><%= records.Task %> <%= records.Date %>
+            <%= link_to "Delete", "/todos/#{records.id}", :date => {:confirm => "Are you sure?"}%>
+            </h1>
+            <%end%>
+        </div>
+    </div>
+    <script type="text/javascript" src="main.js"></script>
+
